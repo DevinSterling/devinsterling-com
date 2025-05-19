@@ -1,0 +1,23 @@
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  transition: box-shadow 100ms;
+  box-shadow: var(--theme-box-shadow-border-2);
+  border-radius: var(--theme-radii-full);
+  background-color: var(--theme-foreground);
+  color: var(--theme-text);
+
+  &:hover:not(:disabled) {
+    box-shadow: var(--theme-selected-box-border);
+  }
+
+  &:disabled {
+    pointer-events: none;
+  }
+
+  &.signature_color:hover {
+    background-color: var(--theme-accent);
+  }
+}

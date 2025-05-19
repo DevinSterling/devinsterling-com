@@ -1,0 +1,13 @@
+.chip {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: var(--theme-radii-partial);
+  box-shadow: var(--theme-box-shadow-border-1);
+  background-color: var(--theme-foreground);
+
+  &:hover {
+    box-shadow: var(--theme-selected-box-border);
+  }
+}

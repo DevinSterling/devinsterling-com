@@ -1,0 +1,34 @@
+@use '../../../const/constants' as consts;
+
+.projects {
+  background: var(--theme-background-2);
+  padding: 50px 10px 50px;
+  overflow-x: clip; // prevent animations from triggering horizontal scrollbars
+  box-shadow: var(--theme-box-shadow-border-1);
+
+  h2 {
+    font-size: 3em;
+    font-weight: 300;
+    margin: 0;
+  }
+
+  .content {
+    max-width: 1400px;
+    margin: 0 auto;
+
+    .project_title_bar {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0;
+    }
+  }
+}
+
+@media screen and (min-width: consts.$laptop) {
+  .projects .content .project_title_bar {
+    justify-content: flex-start;
+    gap: 30px;
+  }
+}

@@ -1,0 +1,8 @@
+.image {
+  transition-duration: 300ms;
+
+  &:hover, &:focus {
+    box-shadow: var(--theme-selected-box-border);
+    scale: 1.05;
+  }
+}

@@ -1,0 +1,38 @@
+@use '../../util/animation' as animate;
+
+.notification {
+  padding: 10px;
+  border-radius: var(--theme-radii-partial);
+  @include animate.from_direction(from_bottom, 0 50px);
+
+  .header {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  &.success {
+    background-color: green;
+  }
+
+  &.error {
+    background-color: red;
+  }
+
+  &.loading {
+    svg {
+      animation: spin infinite 1s;
+    }
+
+    background-color: var(--theme-accent);
+  }
+}
+
+@keyframes spin {
+  from {
+    rotate: 0deg
+  }
+  to {
+    rotate: 360deg
+  }
+}

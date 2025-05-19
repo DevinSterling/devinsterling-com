@@ -1,0 +1,115 @@
+@use '../../const/constants' as consts;
+@use '../../util/animation' as animation;
+
+.item {
+  width: 100%;
+
+  @include animation.from_direction(show-item, 0 30px, $scaleFrom: 1.1, $duration: 500ms);
+  animation-fill-mode: forwards;
+  opacity: 0; // opacity starts at 0 due to the animation
+
+  .content {
+    height: 100%;
+    display: block;
+    padding: var(--grid-item-padding);
+
+    &:hover, &:focus {
+      .image_container {
+        scale: 1.05;
+      }
+
+      .project_name::after {
+        width: 100%;
+      }
+
+      .project_synopsis, .rail {
+        opacity: 1;
+      }
+    }
+
+    .image_container {
+      transition-duration: 300ms;
+      position: relative;
+
+      .project_image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        display: block;
+        border-radius: calc(var(--theme-radii-partial) * 2);
+      }
+
+      .external_link {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        padding: 5px;
+        background-color: var(--theme-background-2);
+        border-radius: var(--theme-radii-full);
+      }
+    }
+
+    .project_name {
+      display: inline-block;
+      color: var(--theme-text);
+      font-size: 2em;
+      font-weight: 500;
+      @include animation.init-underline-strike();
+      margin: 5px 0;
+    }
+
+    .project_synopsis, .rail {
+      opacity: 0.6;
+    }
+
+    .project_synopsis {
+      margin: 0;
+      max-height: 4.75em;
+      overflow: hidden;
+    }
+
+    .rail {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-block-start: 5px;
+
+      .icon_item {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        font-size: 0.6em;
+        padding: 5px;
+        box-shadow: var(--theme-box-shadow-border-2);
+        border-radius: var(--theme-radii-partial);
+
+        .icon {
+          height: 2em;
+        }
+
+        .icon_name {
+          font-size: 1.2em;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: consts.$tablet) {
+  .item {
+    max-width: 50%;
+  }
+}
+
+@media screen and (min-width: consts.$laptop) {
+  .item {
+    max-width: 50%;
+  }
+}
+
+@media screen and (min-width: consts.$desktop) {
+  .item {
+    max-width: 25%;
+  }
+}

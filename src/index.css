@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+:root {
+  /* Base */
+  color-scheme: dark;
+  background-color: var(--theme-background);
+  line-height: 1.5;
+  -webkit-tap-highlight-color: transparent;
+
+  /* Colors */
+  --theme-background: #0e0e0e;
+  --theme-background-2: #101010;
+  --theme-foreground: #1a1a1a;
+  --theme-foreground-2: #222;
+  --theme-foreground-3: #333;
+  --theme-accent: #646cff;
+  --theme-accent-2: #2b3ce6;
+  --theme-text: #fff;
+  --theme-text-dim: #cdcdcd;
+  --theme-text-sub: #888;
+
+  /* Box-shadow */
+  --theme-box-shadow-border-1: var(--theme-foreground-2) 0 0 0 1px;
+  --theme-box-shadow-border-2: var(--theme-foreground-3) 0 0 0 1px;
+
+  /* Accent box-shadow */
+  --theme-accent-box-shadow-border: var(--theme-accent) 0 0 0 3px;
+  --theme-accent-box-shadow-glow: var(--theme-accent-2) 0 0 10px;
+  --theme-selected-box-border:
+      var(--theme-accent-box-shadow-border),
+      var(--theme-accent-box-shadow-glow),
+      var(--theme-accent-2) 0 0 10px inset;
+
+  /* Radii */
+  --theme-radii-partial: 10px;
+  --theme-radii-full: 100px;
+}
+
+#root {
+  width: 100%;
+  min-height: 100lvh;
+}
+
+body {
+  margin: 0;
+  animation: show 1s;
+  overflow-x: hidden;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+body, a, button, input, textarea {
+  font-family: 'Outfit', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  color: var(--theme-text);
+}
+
+a, button, input, textarea {
+  color: var(--theme-text-dim);
+}
+
+a, button {
+  box-sizing: border-box;
+  border: none;
+  padding: 10px 19px;
+  font-size: 1em;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: inherit;
+  transition: box-shadow 250ms;
+
+  &:hover {
+    color: var(--theme-text);
+  }
+}
+
+input, textarea {
+  padding: 10px;
+  font-size: 1em;
+  border: none;
+  outline: none;
+  border-radius: var(--theme-radii-partial);
+  background-color: var(--theme-foreground);
+  box-shadow: var(--theme-box-shadow-border-2);
+  transition: box-shadow 100ms;
+
+  &:focus {
+    color: var(--theme-text);
+    box-shadow: var(--theme-selected-box-border);
+  }
+}
+
+@keyframes show {
+  0% {
+    transform: translateY(3em);
+    scale: 1.2;
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    scale: 1;
+    opacity: 1;
+  }
+}

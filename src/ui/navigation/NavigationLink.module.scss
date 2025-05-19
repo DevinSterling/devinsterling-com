@@ -1,0 +1,18 @@
+@use '../../util/animation' as animation;
+
+.link a {
+  display: block;
+  width: 100%;
+  padding: 10px 25px;
+  font-weight: 200;
+
+  .strike {
+    @include animation.init-underline-strike($height: 3px, $bottom: -5px);
+  }
+
+  &:hover, &:focus {
+    .strike::after {
+      width: 100%;
+    }
+  }
+}

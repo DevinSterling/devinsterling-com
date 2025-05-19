@@ -1,0 +1,28 @@
+@use '../../const/constants' as consts;
+
+.grid {
+  --grid-item-padding: 10px;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 10px calc(-1 * var(--grid-item-padding));
+  animation: show 1000ms;
+}
+
+@keyframes show {
+  from {
+    opacity: 0;
+    translate: -5%;
+  }
+  to {
+    opacity: 1;
+    translate: 0;
+  }
+}
+
+@media screen and (min-width: consts.$laptop) {
+  .grid {
+    --grid-item-padding: 30px;
+  }
+}

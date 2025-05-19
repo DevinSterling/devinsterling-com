@@ -1,0 +1,20 @@
+@use '../../util/animation' as animate;
+
+.carousel_tabs {
+  margin: 20px -10px 0;
+  padding: 10px;
+  @include animate.from_direction(from_right, 5%);
+}
+
+.carousel {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  @include animate.from_direction(from_left, -5%);
+
+  .main_card {
+    max-width: 90em;
+  }
+}

@@ -1,0 +1,60 @@
+@mixin from_direction(
+  $name,
+  $from,
+  $to: 0,
+  $duration: 1s,
+  $opacityFrom: 0,
+  $opacityTo: 1,
+  $scaleFrom: none,
+  $scaleTo: 1
+) {
+  animation: $name $duration;
+
+  @keyframes #{$name} {
+    from {
+      opacity: $opacityFrom;
+      translate: $from;
+
+      @if $scaleFrom {
+        scale: $scaleFrom;
+      }
+    }
+    to {
+      opacity: $opacityTo;
+      translate: $to;
+
+      @if $scaleFrom {
+        scale: $scaleTo;
+      }
+    }
+  }
+}
+
+@mixin marquee($name, $duration: 10s) {
+  animation: $name $duration infinite linear;
+
+  @keyframes #{$name} {
+    from {
+      transform: translateX( 0% );
+    }
+    to {
+      transform: translateX( -100% );
+    }
+  }
+}
+
+@mixin init-underline-strike($color: var(--theme-accent), $bottom: 0, $height: 4px, $duration: 300ms) {
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 0;
+    transition-duration: $duration;
+    bottom: $bottom;
+    height: $height;
+    background-color: $color;
+  }
+}
+

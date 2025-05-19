@@ -1,0 +1,53 @@
+@use '../../util/animation' as animate;
+
+.change {
+  @include animate.from-direction(left, -10%, 1.5s, $scaleFrom: 1.1);
+}
+
+.change_alt {
+  @include animate.from-direction(right, 10%, 1.5s, $scaleFrom: 0.9);
+}
+
+.auto_card {
+  animation-fill-mode: forwards;
+  opacity: 0; // opacity starts at 0 due to the animation
+}
+
+.spaced {
+  padding: 25px 0;
+
+  & > ul > li {
+    margin-bottom: 50px;
+  }
+}
+
+.loader {
+  width: 50%;
+  height: 5px;
+  position: relative;
+  margin: 25px auto 0;
+  background-color: var(--theme-foreground-3);
+  border-radius: var(--theme-radii-partial);
+
+  &:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: inherit;
+    border-radius: inherit;
+    background-color: var(--theme-accent);
+    box-shadow: var(--theme-accent-box-shadow-glow);
+
+    animation-name: load;
+    animation-duration: inherit;
+    animation-play-state: inherit;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+}
+
+@keyframes load {
+  from { width: 0 }
+  to { width: 100% }
+}

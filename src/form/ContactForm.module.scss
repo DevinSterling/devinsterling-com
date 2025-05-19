@@ -1,0 +1,67 @@
+@use '../util/animation' as animate;
+@use '../const/constants' as consts;
+
+.secret {
+  display: none;
+}
+
+.contact_form {
+  width: 100%;
+  margin: 0 auto;
+  @include animate.from_direction(from_bottom, 0 50px, $duration: 0.5s);
+
+  label {
+    display: flex;
+    flex-direction: column;
+    margin-block-start: 10px;
+    gap: 2px;
+
+    span {
+      margin-block-start: 0;
+      display: inline-block;
+      width: 6em;
+    }
+
+    input, textarea {
+      flex-grow: 1;
+    }
+  }
+
+  textarea {
+    height: 8em;
+    resize: vertical;
+  }
+
+  .send_button {
+    width: 100%;
+    max-width: 32em;
+    padding: 4px 4px 4px 15px;
+    margin: 20px auto 0;
+    justify-content: space-between;
+
+    &:disabled {
+      display: none;
+    }
+
+    svg {
+      padding: 4px;
+      opacity: 0.5;
+      background-color: var(--theme-foreground-3);
+      border-radius: var(--theme-radii-full);
+    }
+
+    &:hover svg {
+      opacity: 1;
+    }
+  }
+}
+
+@media screen and (min-width: consts.$laptop) {
+  .contact_form label {
+    flex-direction: row;
+
+    span {
+      margin-block-start: 6px;
+    }
+  }
+}

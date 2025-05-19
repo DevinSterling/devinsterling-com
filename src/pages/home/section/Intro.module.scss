@@ -1,0 +1,80 @@
+@use '../../../const/constants' as consts;
+@use '../../../util/animation' as animation;
+
+.intro {
+  min-height: 100lvh;
+  width: 100%;
+}
+
+.sub {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  gap: 10px;
+  top: 70%;
+  width: 100%;
+  animation: show-sub 500ms;
+
+  &.hide {
+    display: none;
+  }
+
+  a .optional_text {
+    display: none;
+  }
+}
+
+.background_words {
+  position: fixed;
+  width: 100dvw;
+  height: 100lvh;
+  z-index: -1;
+  opacity: 5%;
+
+  .rail {
+    max-height: 16.6lvh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+
+    .words {
+      white-space: nowrap;
+      vertical-align: text-top;
+      text-transform: uppercase;
+      font-weight: bold;
+      pointer-events: none;
+      user-select: none;
+      font-size: 22lvh;
+
+      .accent {
+        color: color-mix(in srgb, var(--theme-accent), #fff 40%);
+      }
+
+      /* Text node is slight offset, correct it */
+      position: relative;
+      top: -8.5lvh;
+      @include animation.marquee(marquee, 10s);
+    }
+  }
+}
+
+@keyframes show-sub {
+  from {
+    opacity: 0;
+    translate: 0 50%;
+  }
+  to {
+    opacity: 1;
+    translate: 0;
+  }
+}
+
+@media screen and (min-width: consts.$tablet) {
+  .sub a {
+    min-width: 200px;
+
+    .optional_text {
+      display: inline;
+    }
+  }
+}
