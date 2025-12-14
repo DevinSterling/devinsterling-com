@@ -1,3 +1,5 @@
+import { FORM_API } from "../const/values.ts";
+
 const ERROR_TEXT = 'Failed to send message';
 
 /** @throws Error If submission fails. */
@@ -9,7 +11,7 @@ export async function submitContactMessage(contactData: FormData) {
       method: 'POST',
       body: JSON.stringify({
         ...Object.fromEntries(contactData),
-        accessKey: import.meta.env.VITE_FORM_API_KEY,
+        accessKey: FORM_API,
       }),
       headers: { 'Content-Type': 'application/json' },
     });
