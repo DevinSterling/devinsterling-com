@@ -6,22 +6,23 @@ import * as technology from '../technologies.ts';
 const images: Image[] = [
   {
     src: '/images/localize/localize.png',
-    alt: 'The Localize library.',
+    alt: 'The Localize library',
   }
 ]
 
-export const LOCALIZE: Project = {
+const LOCALIZE: Project = {
   name: 'Localize',
   link: 'https://github.com/devinsterling/localize',
   languages: [language.JAVA],
   technologies: [technology.JAVAFX],
-  introduction: 'A lightweight Java localization library alongside an optional JavaFX integration module.',
+  introduction: 'A lightweight threadsafe Java localization library alongside an optional JavaFX integration module.',
   synopsis:
-    `Simplifies management of locale changes during runtime for internationalized applications.
-     Uses registered providers to retrieve resource bundles when the locale changes.
-     Additionally, includes support for parameterization (named and numbered arguments), pluralization, 
+    `Localize simplifies management of locale changes during runtime for internationalized 
+     applications, utilizing registered providers to automate resource bundle retrieval when the locale changes.
+     In addition, support for parameterization (named and numbered arguments), pluralization, 
      and more through the default ICU4J processor.`,
   thumbnail: images[0],
+  color: '#79ff90',
   images,
 };
 

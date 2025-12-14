@@ -1,10 +1,13 @@
 @use '../../../const/constants' as consts;
+@use '../../../util/animation' as animation;
 
 .projects {
   background: var(--theme-background-2);
   padding: 50px 10px 50px;
   overflow-x: clip; // prevent animations from triggering horizontal scrollbars
   box-shadow: var(--theme-box-shadow-border-1);
+  position: relative;
+  overflow: clip;
 
   h2 {
     font-size: 3em;
@@ -22,6 +25,33 @@
       justify-content: space-between;
       align-items: center;
       gap: 0;
+    }
+  }
+
+  // This pseudo-element can be swapped for a liner-gradient background.
+  // Although, switching to a gradient reduces flexibility.
+  &::before {
+    content: '';
+    border-radius: 100em;
+    position: absolute;
+    width: 0;
+    height: 0;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    animation: fade 10s infinite linear;
+    box-shadow: 0 0 100dvh 75dvh color-mix(in srgb, var(--theme-accent), transparent 90%);
+
+    @keyframes fade {
+      0% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.5;
+      }
+      100% {
+        opacity: 1;
+      }
     }
   }
 }

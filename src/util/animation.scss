@@ -6,9 +6,10 @@
   $opacityFrom: 0,
   $opacityTo: 1,
   $scaleFrom: none,
-  $scaleTo: 1
+  $scaleTo: 1,
+  $fillMode: normal,
 ) {
-  animation: $name $duration;
+  animation: $name $duration $fillMode;
 
   @keyframes #{$name} {
     from {

@@ -1,22 +1,18 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { ProjectCardVariant } from './ProjectCardVariant.ts';
 import Project from '../../model/project.ts';
 import ProjectCard from './ProjectCard.tsx';
 import CustomButton from '../button/CustomButton.tsx';
+import PaginateBar from '../pagination/PaginateBar.tsx';
 import styles from './ProjectAutoView.module.scss'
+import { PlayState } from '../pagination/PlayState.ts';
 
 interface ProjectsAutoViewProps {
   projects: Project[],
   slots: number,
   time: number,
   onSelectProject(project: Project): void,
-}
-
-enum PlayState {
-  PLAY,
-  STOP,
-  DISABLED,
 }
 
 const SCROLL_THRESHOLD = 0.5;
@@ -46,25 +42,16 @@ export default function ProjectAutoView({ projects, slots, time, onSelectProject
 
   // Stop if playing
   const setStop = () => setPlayState(prev => (
-    prev == PlayState.PLAY ? PlayState.STOP : prev
+    prev === PlayState.PLAY ? PlayState.STOP : prev
   ));
   // Attempt to play. Not possible if disabled or element not in view
   const setPlaying = () => setPlayState(prev => (
-    prev == PlayState.DISABLED || !inView ? prev : PlayState.PLAY
+    prev === PlayState.DISABLED || !inView ? prev : PlayState.PLAY
   ));
-
-  // Manage timer for next selection of projects to show
-  useEffect(() => {
-    let interval = 0;
-
-    if (playState == PlayState.PLAY) {
-      interval = setInterval(() => {
-        setIteration(previous => (previous + slots) % projects.length);
-      }, time);
-    }
-
-    return () => clearInterval(interval);
-  }, [projects.length, slots, time, playState]);
+  const setUserIteration: (iteration: number) => void = i => {
+    setIteration(i * 2);
+    setPlayState(PlayState.STOP);
+  }
 
   return (
     <div ref={ref} className={styles.spaced}>
@@ -86,12 +73,11 @@ export default function ProjectAutoView({ projects, slots, time, onSelectProject
           </CustomButton>
         ))}
       </ul>
-      <div key={`${playState}${iteration}`}
-           className={styles.loader}
-           style={{
-             animationDuration: `${time}ms`,
-             animationPlayState: playState == PlayState.PLAY ? 'running' : 'paused',
-           }}/>
+      <PaginateBar length={Math.ceil(projects.length / slots)}
+                   selected={Math.floor((iteration / 2) % projects.length)}
+                   onSelectedChange={setUserIteration}
+                   autoIncrementTime={time}
+                   autoIncrementPlayState={playState} />
     </div>
   );
 }

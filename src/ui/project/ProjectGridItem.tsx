@@ -10,13 +10,18 @@ interface ProjectGridItemProps extends HTMLAttributes<HTMLLIElement> {
 
 export default function ProjectGridItem({ project, ...props }: ProjectGridItemProps) {
   return (
-    <li {...props} className={styles.item}>
+    <li {...props}
+        className={`${styles.item} ${props.className?? ''}`}
+        style={{
+          filter: `drop-shadow(5em 5em 10em color-mix(in srgb, ${project.color}, transparent 90%))`,
+          ...props.style
+        }}>
       <Link to={project.link} target='_blank' className={styles.content}>
         <div className={styles.image_container}>
           <img src={project.thumbnail?.src} alt={project.thumbnail?.alt} className={styles.project_image}/>
           <IconArrowUpRight className={styles.external_link} />
         </div>
-        <h3 className={styles.project_name}>{project.name}</h3>
+        <h3 className={styles.project_name} style={{ backgroundColor: project.color }}>{project.name}</h3>
         <p className={styles.project_synopsis}>{project.introduction}</p>
         <ul className={styles.rail} aria-label='Languages'>
           {project.languages.map(language => (

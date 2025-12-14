@@ -16,7 +16,7 @@ const NOTIFICATION_TYPES = {
 };
 
 function createNotification(context: FormContext) {
-  if (context.state == FormState.UNSUBMITTED) return null;
+  if (context.state === FormState.UNSUBMITTED) return null;
   return <Notification message={context.message} type={NOTIFICATION_TYPES[context.state]} />;
 }
 

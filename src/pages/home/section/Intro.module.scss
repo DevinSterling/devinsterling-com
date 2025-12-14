@@ -9,6 +9,7 @@
 .sub {
   display: flex;
   justify-content: center;
+  align-items: center;
   position: fixed;
   gap: 10px;
   top: 70%;
@@ -22,6 +23,70 @@
   a .optional_text {
     display: none;
   }
+
+  .scroll_down {
+    background: none;
+    box-shadow: none;
+    border-radius: var(--theme-radii-partial);
+    width: 45px;
+    height: 45px;
+    overflow: hidden;
+    position: relative;
+
+    &:hover, &:focus {
+      .svg_wrapper {
+        &::after, &::before {
+          background-color: var(--theme-accent);
+        }
+
+        svg {
+          color: var(--theme-accent);
+          background-color: var(--theme-text);
+        }
+      }
+    }
+
+    // Sass compiler warns if this is merged into the `.svg_wrapper` block below, so it placed separately here.
+    //! Deprecation Warning: Sass's behavior for declarations that appear after nested
+    //! rules will be changing to match the behavior specified by CSS in an upcoming
+    //! version. To keep the existing behavior, move the declaration above the nested
+    //! rule. To opt into the new behavior, wrap the declaration in `& {}`.
+    .svg_wrapper {
+      @include animation.from_direction(scroll-down, 0 -75%, 0 75%, $opacityFrom: 1);
+    }
+
+    .svg_wrapper {
+      position: relative;
+      z-index: -1;
+      animation-iteration-count: infinite;
+      animation-timing-function: cubic-bezier(.35,.85,.65,.15);
+
+      &::before, &::after {
+        content: '';
+        position: absolute;
+        background-color: #fff;
+        width: 100%;
+        height: 100%;
+        left: 0;
+      }
+
+      &::before {
+        bottom: 75%;
+      }
+
+      &::after {
+        top: 75%;
+      }
+
+      svg {
+        background-color: transparent;
+        position: inherit;
+        z-index: -2;
+        min-width: 60px;
+        min-height: 60px;
+      }
+    }
+  }
 }
 
 .background_words {
@@ -29,9 +94,11 @@
   width: 100dvw;
   height: 100lvh;
   z-index: -1;
-  opacity: 5%;
+  pointer-events: none;
+  user-select: none;
 
   .rail {
+    opacity: 5%;
     max-height: 16.6lvh;
     overflow: hidden;
     display: flex;
@@ -43,7 +110,6 @@
       text-transform: uppercase;
       font-weight: bold;
       pointer-events: none;
-      user-select: none;
       font-size: 22lvh;
 
       .accent {
@@ -53,7 +119,7 @@
       /* Text node is slight offset, correct it */
       position: relative;
       top: -8.5lvh;
-      @include animation.marquee(marquee, 10s);
+      @include animation.marquee(marquee, 20s);
     }
   }
 }

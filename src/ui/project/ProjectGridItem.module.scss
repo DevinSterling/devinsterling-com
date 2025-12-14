@@ -1,14 +1,23 @@
 @use '../../const/constants' as consts;
 @use '../../util/animation' as animation;
 
+// Sass compiler warns if this is merged into the `.item` block below, so it placed separately here.
+//! Deprecation Warning: Sass's behavior for declarations that appear after nested
+//! rules will be changing to match the behavior specified by CSS in an upcoming
+//! version. To keep the existing behavior, move the declaration above the nested
+//! rule. To opt into the new behavior, wrap the declaration in `& {}`.
+.item {
+  @include animation.from_direction(show-item, 0 30px, $fillMode: forwards, $scaleFrom: 1.1, $duration: 500ms);
+}
+
 .item {
   width: 100%;
-
-  @include animation.from_direction(show-item, 0 30px, $scaleFrom: 1.1, $duration: 500ms);
-  animation-fill-mode: forwards;
-  opacity: 0; // opacity starts at 0 due to the animation
+  // Opacity starts at 0 to make all items initially not visible.
+  // The animation above handles making the items remain visible by setting the fill mode to `forwards`.
+  opacity: 0;
 
   .content {
+    $duration: 300ms;
     height: 100%;
     display: block;
     padding: var(--grid-item-padding);
@@ -19,6 +28,7 @@
       }
 
       .project_name::after {
+        background-color: inherit;
         width: 100%;
       }
 
@@ -28,7 +38,7 @@
     }
 
     .image_container {
-      transition-duration: 300ms;
+      transition-duration: $duration;
       position: relative;
 
       .project_image {
@@ -50,6 +60,7 @@
     }
 
     .project_name {
+      background-clip: text;
       display: inline-block;
       color: var(--theme-text);
       font-size: 2em;
@@ -59,6 +70,7 @@
     }
 
     .project_synopsis, .rail {
+      transition: calc($duration / 2);
       opacity: 0.6;
     }
 

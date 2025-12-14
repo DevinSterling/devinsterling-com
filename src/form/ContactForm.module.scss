@@ -7,23 +7,40 @@
 
 .contact_form {
   width: 100%;
-  margin: 0 auto;
+  margin: 5px auto 0;
+  overflow: hidden;
+  background-color: var(--theme-foreground);
+  box-shadow: var(--theme-box-shadow-border-2);
+  border-radius: calc(var(--theme-radii-partial) * 2);
   @include animate.from_direction(from_bottom, 0 50px, $duration: 0.5s);
 
   label {
     display: flex;
     flex-direction: column;
-    margin-block-start: 10px;
     gap: 2px;
+    border-bottom: 1px solid var(--theme-foreground-3);
+    overflow: hidden;
+
+    &:focus-within span {
+      filter: drop-shadow(-2em 0 1em var(--theme-accent))
+              drop-shadow(1em 0 1em var(--theme-accent))
+              drop-shadow(0 0 2em var(--theme-accent))
+              drop-shadow(-2em 0 3em var(--theme-accent));
+    }
 
     span {
+      display: none;
+      padding-left: 15px;
       margin-block-start: 0;
-      display: inline-block;
       width: 6em;
+      transition-duration: 300ms;
     }
 
     input, textarea {
+      background: transparent;
+      box-shadow: none;
       flex-grow: 1;
+      border-radius: 0;
     }
   }
 
@@ -33,10 +50,11 @@
   }
 
   .send_button {
-    width: 100%;
+    width: 15em;
     max-width: 32em;
     padding: 4px 4px 4px 15px;
-    margin: 20px auto 0;
+    margin: 5px auto;
+    box-sizing: border-box;
     justify-content: space-between;
 
     &:disabled {
@@ -46,8 +64,7 @@
     svg {
       padding: 4px;
       opacity: 0.5;
-      background-color: var(--theme-foreground-3);
-      border-radius: var(--theme-radii-full);
+      margin-right: 2px;
     }
 
     &:hover svg {
@@ -61,7 +78,12 @@
     flex-direction: row;
 
     span {
-      margin-block-start: 6px;
+      display: inline-block;
+      padding-top: 6px;
+    }
+
+    input, textarea {
+      border-left: 1px dotted var(--theme-foreground-3);
     }
   }
 }

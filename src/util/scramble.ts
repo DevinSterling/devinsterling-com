@@ -24,7 +24,7 @@ export default function scramble(element: HTMLElement, configuration: ScrambleCo
     } else {
       clearInterval(interval);
       element.textContent = original;
-      element.dataset.scrambling = '';
+      delete element.dataset.scrambling;
     }
   }, configuration.duration / configuration.maxIterations);
 }

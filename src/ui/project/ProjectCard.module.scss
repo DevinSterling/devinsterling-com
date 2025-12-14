@@ -13,9 +13,11 @@
   min-height: 20em;
   row-gap: 10px;
   column-gap: 20px;
+  transition-duration: 500ms;
 
-  &:hover, &:focus-within {
+  &.plain, &:hover, &:focus-within {
     .title_container .project_title::after {
+      background-color: inherit;
       width: 100%;
     }
   }
@@ -28,6 +30,7 @@
     gap: 10px;
 
     .project_title {
+      background-clip: text;
       margin: 0;
       font-size: 3em;
       @include animation.init-underline-strike();
@@ -38,6 +41,11 @@
       height: 2em;
       width: 2em;
       padding: 0;
+
+      &:not(:hover) svg {
+        scale: 0.9;
+        opacity: 0.7;
+      }
     }
   }
 
@@ -67,7 +75,7 @@
     justify-self: end;
     object-fit: cover;
     background-color: var(--theme-foreground);
-    border-radius: calc(var(--theme-radii-partial) * 1.5);
+    border-radius: calc(var(--theme-radii-partial) * 2 /*1.5*/);
   }
 
   &.mini_left, &.mini_right {
@@ -99,7 +107,6 @@
 
     .thumbnail {
       height: 14em;
-      inset: 10px;
     }
   }
 
@@ -148,6 +155,18 @@
     &.mini_left, &.mini_right {
       min-height: auto;
       grid-template-rows: auto auto 1fr;
+    }
+  }
+}
+
+@media screen and (min-width: consts.$desktop) {
+  .card {
+    .thumbnail {
+      width: 30em;
+    }
+
+    &.plain .thumbnail {
+      width: 38em;
     }
   }
 }

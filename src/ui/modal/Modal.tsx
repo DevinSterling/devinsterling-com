@@ -23,7 +23,7 @@ export default function Modal({ show, requestClose, onModalShow, onModalClose, .
   }, [onModalClose, onModalShow, show]);
 
   const onKeyDown = (event: KeyboardEvent<HTMLDialogElement>) => {
-    if (event.code == 'Escape') {
+    if (event.code === 'Escape') {
       requestClose();
       event.preventDefault();
     } else {

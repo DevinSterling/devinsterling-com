@@ -1,4 +1,5 @@
 import { ImgHTMLAttributes, useState } from 'react';
+import { IconMaximize } from '@tabler/icons-react';
 import ModalAware from '../modal/ModalAware.ts';
 import CustomButton from '../button/CustomButton.tsx';
 import ImageViewModal from './ImageViewModal.tsx';
@@ -28,13 +29,15 @@ export default function ImageView({
                       onModalShow={onModalShow}
                       onModalClose={onModalClose}
                       requestClose={() => setShowImageView(false)}/>
-      <CustomButton {...props}
-                    {...img_props}
-                    as='img'
-                    onClick={() => setShowImageView(true)}
-                    className={`${className} ${styles.image}`}
-                    role='button'
-                    tabIndex={0}/>
+      <div {...props} className={`${styles.container} ${className}`}>
+        <CustomButton {...img_props}
+                      as='img'
+                      onClick={() => setShowImageView(true)}
+                      className={styles.image}
+                      role='button'
+                      tabIndex={0}/>
+        <IconMaximize className={styles.enlarge} />
+      </div>
     </>
   );
 }

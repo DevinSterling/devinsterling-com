@@ -10,7 +10,7 @@ const images: Image[] = [
   }
 ]
 
-export const MEDIA: Project = {
+const MEDIA: Project = {
   name: 'Media Framework',
   link: 'https://github.com/devinsterling/Kuruma',
   languages: [language.JAVA, language.SQL],
@@ -24,6 +24,7 @@ export const MEDIA: Project = {
      Plugins can include a GraphQL API, additional player adapters (for VLC, MPV, or SVP compatibility),
      event listener registration to trigger specific actions, extend UI module functionality, etc.`,
   thumbnail: images[0],
+  color: '#f71942',
   images,
 };
 

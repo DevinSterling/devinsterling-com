@@ -14,7 +14,7 @@ export async function submitContactMessage(contactData: FormData) {
       headers: { 'Content-Type': 'application/json' },
     });
   } catch (err) {
-    console.log(err);
+    console.error(err);
     throw Error(`Unknown browser error: ${ERROR_TEXT} (More details in logs)`);
   }
 

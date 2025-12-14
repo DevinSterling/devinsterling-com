@@ -1,6 +1,7 @@
 import { useEffect, useRef, KeyboardEvent, JSX } from 'react';
 import { Icon } from '@tabler/icons-react'
 import { TabStyle } from './TabStyle.ts';
+import { wrapIndex } from '../../util';
 import PillButton from '../button/PillButton.tsx';
 import styles from './Tabs.module.css'
 
@@ -20,10 +21,6 @@ interface TabsProps<T> {
   className?: string,
   tabClassName?: string,
   selectorClassName?: string,
-}
-
-function wrapIndex(i: number, len: number): number {
-  return ((i % len) + len) % len;
 }
 
 export default function Tabs<T>({
@@ -49,8 +46,8 @@ export default function Tabs<T>({
       const el = tabs[i] as HTMLElement;
 
       // Use `title` if there is no text node)
-      if (el.title == text || el.textContent == text) {
-        // Set focus to new tab
+      if (el.title === text || el.textContent === text) {
+        // Set focus to the new tab
         if (document.activeElement?.parentElement === parent) el.focus();
 
         // Update selector appearance

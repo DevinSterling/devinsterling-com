@@ -10,7 +10,7 @@ import styles from './ContactForm.module.scss';
 
 export default function ContactForm() {
   const [ formContext, setFormContext ] = useState<FormContext>(UNSUBMITTED_FORM);
-  const isDisabled = formContext.state == FormState.SUBMITTING || formContext.state == FormState.SUCCESS;
+  const isDisabled = formContext.state === FormState.SUBMITTING || formContext.state == FormState.SUCCESS;
 
   const onRequestSubmit = async (data: FormData) => {
     try {
@@ -33,14 +33,14 @@ export default function ContactForm() {
 
   return (
     <Form context={formContext} onRequestSubmit={onRequestSubmit} className={styles.contact_form}>
-      <FormLabel label='Name*'>
-        <input type='text' name='name' placeholder='Name' autoComplete='name' disabled={isDisabled} required autoFocus/>
+      <FormLabel label='Name'>
+        <input type='text' name='name' placeholder='Name*' autoComplete='name' disabled={isDisabled} required autoFocus/>
       </FormLabel>
-      <FormLabel label='Email*'>
-        <input type='email' name='email' placeholder='Email' autoComplete='email' disabled={isDisabled} required />
+      <FormLabel label='Email'>
+        <input type='email' name='email' placeholder='Email*' autoComplete='email' disabled={isDisabled} required />
       </FormLabel>
-      <FormLabel label='Message*'>
-        <textarea name='message' placeholder='Message' disabled={isDisabled} required />
+      <FormLabel label='Message'>
+        <textarea name='message' placeholder='Message*' disabled={isDisabled} required />
       </FormLabel>
       {/** api.staticforms.xyz identifies requests as SPAM if the `honeypot` field is NOT empty */}
       <input type='text' name='honeypot' className={styles.secret} />

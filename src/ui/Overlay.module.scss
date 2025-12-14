@@ -8,28 +8,25 @@ $navbar-items-max-height: 8.5rem;
   z-index: 1; // Appear in-front of main content
 
   nav {
+    $width: 200px;
+
     background-color: color-mix(in srgb, var(--theme-foreground), transparent 30%);
     backdrop-filter: blur(1rem);
-    width: 4rem;
+    width: 3.4rem;
     margin: 5px;
     border-radius: var(--theme-radii-partial);
     box-shadow: var(--theme-box-shadow-border-2);
-
-    &.show_nav {
-      width: $navbar-max-width;
-
-      .nav_menu {
-        height: $navbar-items-max-height;
-      }
-    }
 
     .top_bar {
       display: flex;
       flex-direction: row;
 
       .nav_button {
-        padding: 10px 20px;
+        padding: 10px 15px;
         background-color: transparent;
+        cursor: default;
+
+        transition: padding-left 100ms;
 
         svg {
           height: 100%;
@@ -50,11 +47,28 @@ $navbar-items-max-height: 8.5rem;
       transition-duration: 100ms;
       overflow: hidden;
     }
+
+    /* Handle when the nav is shown entirely */
+    &.show_nav {
+      width: $navbar-max-width;
+
+      .top_bar .nav_button {
+        padding-left: 22px;
+      }
+
+      .nav_menu {
+        height: $navbar-items-max-height;
+      }
+    }
   }
 
   /* Handle when the title text is minimized */
   &:has(.minimized) nav {
     width: $navbar-max-width;
+
+    .top_bar .nav_button {
+      padding-left: 22px;
+    }
 
     .nav_name {
       display: block;
@@ -67,36 +81,33 @@ $navbar-items-max-height: 8.5rem;
   justify-content: center;
   align-items: center;
   position: absolute;
-  min-width: 100dvw;
-  min-height: 100lvh;
   font-size: 4rem;
   font-weight: 600;
   transition-duration: 100ms;
   line-height: 0.8;
-  top: 0;
+  width: 100dvw;
+  translate: 0 -50%;
+  top: 50dvh;
   left: 0;
-  pointer-events: none;
   user-select: none;
+  pointer-events: none;
+  text-transform: uppercase;
 
   &.minimized {
+    width: 100%;
     min-width: 0;
     min-height: 0;
     font-size: 2rem;
     font-weight: 400;
+    translate: 0 0;
     top: 15px;
-    left: 70px;
-
-    .text {
-      z-index: 1; // When minimized, prevent hiding behind nav element
-    }
+    left: 20px;
+    z-index: 1; // Appear *Atop* the nav element instead of *Behind*
   }
 
   &:not(.minimized) {
     text-align: center;
-
-    .text {
-      pointer-events: auto;
-    }
+    pointer-events: auto;
   }
 }
 
@@ -106,7 +117,7 @@ $navbar-items-max-height: 8.5rem;
   }
 }
 
-@media screen and (min-width: consts.$laptop) {
+@media screen and ((min-width: consts.$laptop) and (min-height: 700px)) {
   .name {
     font-size: 10rem;
   }

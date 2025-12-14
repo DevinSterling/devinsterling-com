@@ -11,4 +11,5 @@ export default interface Project {
   synopsis: string,
   thumbnail: Image,
   images: Image[],
+  color: string,
 }

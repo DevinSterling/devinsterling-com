@@ -16,17 +16,18 @@ interface ProjectCardProps extends ModalAware, HTMLAttributes<HTMLElement> {
 
 export default function ProjectCard({
   className = '',
+  variant = ProjectCardVariant.PLAIN,
   project,
-  variant,
   onModalShow,
   onModalClose,
   ...props
 }: ProjectCardProps) {
   return (
     <article {...props}
-             className={`${className} ${styles.card} ${variant ? styles[variant] : ''}`}>
+             className={`${className} ${styles.card} ${styles[variant]}`}
+             style={{ filter: `drop-shadow(10em -10em 10em color-mix(in srgb, ${project.color}, transparent 85%))` }}>
       <div className={styles.title_container}>
-        <h3 className={styles.project_title}>{project.name}</h3>
+        <h3 className={styles.project_title} style={{ backgroundColor: project.color }}>{project.name}</h3>
         <PillLinkButton to={project.link} Icon={IconBrandGithub} title='GitHub' target='_blank' signatureColor/>
       </div>
       <div className={styles.chips}>
@@ -35,7 +36,7 @@ export default function ProjectCard({
           <ListGroup spacing={10}>
             {project.languages.map(language => (
               <ListGroup.Item key={language.name}>
-                <ChipLink to={language.link} Icon={language.icon}>
+                <ChipLink to={language.link} target='_blank' Icon={language.icon}>
                   {language.name}
                 </ChipLink>
               </ListGroup.Item>
@@ -48,7 +49,7 @@ export default function ProjectCard({
             <ListGroup spacing={10}>
               {project.technologies.map(technology => (
                 <ListGroup.Item key={technology.name}>
-                  <ChipLink to={technology.link} Icon={technology.icon}>
+                  <ChipLink to={technology.link} target='_blank' Icon={technology.icon}>
                     {technology.name}
                   </ChipLink>
                 </ListGroup.Item>

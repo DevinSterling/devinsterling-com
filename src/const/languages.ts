@@ -16,35 +16,35 @@ export const PYTHON: Language = {
 export const C: Language = {
   name: 'C',
   icon: icons.IconLetterC,
-  link: '',
+  link: 'https://en.cppreference.com/w/c/language',
 };
 
 export const Rust: Language = {
   name: 'Rust',
   icon: icons.IconBrandRust,
-  link: '',
+  link: 'https://www.rust-lang.org/',
 };
 
 export const TYPESCRIPT: Language = {
   name: 'TypeScript',
   icon: icons.IconBrandTypescript,
-  link: '',
+  link: 'https://www.typescriptlang.org/',
 };
 
 export const JAVASCRIPT: Language = {
   name: 'JavaScript',
   icon: icons.IconBrandJavascript,
-  link: '',
+  link: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript',
 };
 
 export const SQL: Language = {
   name: 'SQL',
   icon: icons.IconDatabase,
-  link: '',
+  link: 'https://aws.amazon.com/what-is/sql/',
 };
 
 export const PHP: Language = {
   name: 'PHP',
   icon: icons.IconBrandPhp,
-  link: '',
+  link: 'https://www.php.net/',
 };

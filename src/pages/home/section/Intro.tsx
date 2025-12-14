@@ -1,7 +1,9 @@
 import styles from './Intro.module.scss'
-import { IconBrandGithub, IconBrandLinkedin } from '@tabler/icons-react';
+import { IconBrandGithub, IconSquareArrowDownFilled } from '@tabler/icons-react';
 import PillLinkButton from '../../../ui/button/PillLinkButton.tsx';
-import { GITHUB_LINK, LINKEDIN_LINK } from '../../../const/values.ts';
+import { GITHUB_LINK } from '../../../const/values.ts';
+import PillButton from '../../../ui/button/PillButton.tsx';
+import * as Projects from './Projects.tsx';
 
 const data = [
   <><span className={styles.accent}>Lorem</span> ipsum dolor sit</>,
@@ -27,9 +29,17 @@ export default function Intro({ showSub }: { showSub: boolean }) {
         <PillLinkButton to={GITHUB_LINK} target='_blank' Icon={IconBrandGithub}>
           <span className={styles.optional_text}>GitHub</span>
         </PillLinkButton>
-        <PillLinkButton to={LINKEDIN_LINK} target='_blank' Icon={IconBrandLinkedin}>
-          <span className={styles.optional_text}>LinkedIn</span>
-        </PillLinkButton>
+        <PillButton
+          className={styles.scroll_down}
+          title={'Scroll Down'}
+          onClick={() => document.getElementById(Projects.ID)?.scrollIntoView({ behavior: 'smooth' })}>
+          <span className={styles.svg_wrapper}>
+            <IconSquareArrowDownFilled />
+          </span>
+        </PillButton>
+        {/*<PillLinkButton to={LINKEDIN_LINK} target='_blank' Icon={IconBrandLinkedin}>*/}
+        {/*  <span className={styles.optional_text}>LinkedIn</span>*/}
+        {/*</PillLinkButton>*/}
       </div>
     </section>
   );

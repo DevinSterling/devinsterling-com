@@ -31,32 +31,42 @@ interface ViewContext {
   project?: Project,
 }
 
-const ID = 'projects';
+export const ID = 'projects';
 
 export default function Projects() {
   const [ context, setContext ] = useState<ViewContext>({ tab: AUTO_VIEW });
-  const [ param ] = useSearchParams()
+  const [ params ] = useSearchParams()
 
   useEffect(() => {
-    const project = param.get("project")
+    const requested = params.get("project")?.toLowerCase()
+    if (!requested) return;
 
-    if (project) {
-      // Ensure element is visible
-      document.getElementById(ID)?.scrollIntoView({ behavior: 'smooth' })
-      // Update context to show the requested project
-      setContext({
+    const project = ALL_PROJECTS.find(p => p.name.toLowerCase() === requested);
+    if (!project) return;
+
+    // Ensure element is visible
+    document.getElementById(ID)?.scrollIntoView({ behavior: 'smooth' })
+
+    // Update context to show the requested project
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setContext(prev => {
+      // Guard to avoid re-rendering
+      if (prev.tab === CAROUSEL_VIEW && prev.project === project) {
+        return prev;
+      }
+      return {
         tab: CAROUSEL_VIEW,
-        project: ALL_PROJECTS.find(p => p.name.toLowerCase() === project.toLowerCase())
-      })
-    }
-  }, [param]);
+        project,
+      }
+    })
+  }, [params]);
 
   const getView = () => {
     switch (context.tab) {
       case AUTO_VIEW:
         return <ProjectAutoView projects={ALL_PROJECTS}
                                 slots={2}
-                                time={4000}
+                                time={10000}
                                 onSelectProject={project => {
                                   document.getElementById(ID)!.scrollIntoView({ behavior: 'smooth' });
                                   setContext({ tab: CAROUSEL_VIEW, project });

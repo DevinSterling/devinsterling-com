@@ -21,7 +21,7 @@ function isIgnorableChildEvent(event: UIEvent): boolean {
 }
 
 function onKeyDown(event: KeyboardEvent<HTMLElement>) {
-  if (!isIgnorableChildEvent(event) && event.code == 'Enter') {
+  if (!isIgnorableChildEvent(event) && event.code === 'Enter') {
     event.currentTarget.click();
     event.preventDefault();
   }

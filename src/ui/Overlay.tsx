@@ -20,18 +20,14 @@ export default function Overlay() {
     scramble(nameRef.current!);
   }, []);
 
-  scrambleRef();
-
   return (
     <div className={styles.overlay}>
-      <div className={`${styles.name} ${overlayStore.minimized ? styles.minimized : ''}`}>
-        <span ref={nameRef}
-              className={styles.text}
-              onMouseOver={scrambleRef}
-              onClick={scrambleRef}>
+      <span
+        ref={nameRef} className={`${styles.name} ${overlayStore.minimized ? styles.minimized : ''}`}
+        onMouseOver={scrambleRef}
+        onClick={scrambleRef}>
           {NAME}
-        </span>
-      </div>
+      </span>
       <nav className={showNav ? styles.show_nav : ''}
            onMouseOver={() => setShowNav(true)}
            onMouseLeave={() => setShowNav(false)}

@@ -68,12 +68,14 @@
     }
   }
 
+  // In the future, a grid layout may be preferable to house alt + close + etc.
   .alt {
     position: absolute;
     top: 0;
     left: 0;
-    margin: 10px;
-    background-color: var(--theme-foreground);
+    // If a grid layout is used, a margin "offset" isn't required here (See above comment)
+    margin: 10px 60px 10px 10px;
+    background-color: color-mix(in srgb, var(--theme-foreground), transparent 40%);
     padding: 10px 15px;
     border-radius: var(--theme-radii-partial);
     box-shadow: var(--theme-box-shadow-border-2);

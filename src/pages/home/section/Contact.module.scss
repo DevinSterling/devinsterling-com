@@ -1,3 +1,5 @@
+@use '../../../const/constants' as consts;
+
 .contact {
   min-height: 50lvh;
   padding: 50px 10px;
@@ -6,27 +8,33 @@
     max-width: 1400px;
     margin: 0 auto;
 
-    .title {
-      font-size: 5em;
-      font-weight: 600;
-      margin: 0;
-      position: relative;
-      display: inline-block;
+    .top {
+      display: flex;
+      flex-flow: column;
+      gap: 10px;
 
-      &::after {
-        content: '';
-        position: absolute;
-        height: 4px;
-        left: 0;
-        bottom: 15px;
-        width: 100%;
-        background-color: var(--theme-accent);
-        pointer-events: none;
+      .title {
+        font-size: 5em;
+        font-weight: 600;
+        margin: 0;
+        position: relative;
+        display: inline-block;
+
+        &::after {
+          content: '';
+          position: absolute;
+          height: 4px;
+          left: 0;
+          bottom: 15px;
+          width: 100%;
+          background-color: var(--theme-accent);
+          pointer-events: none;
+        }
       }
     }
 
     .about {
-      margin: 10px auto 20px;
+      margin: 50px auto 20px;
 
       p {
         margin: 0;
@@ -36,27 +44,35 @@
   }
 }
 
-.footer {
-  background-color: var(--theme-background-2);
-  border-top: 1px solid var(--theme-foreground-2);
+.shape {
+  width: 170px;
 
-  .contact_buttons {
-    width: fit-content;
-    margin: 0 auto;
+  // Omitted for now...
+  //.face {
+  //  height: 50px;
+  //  width: 50px;
+  //  position: absolute;
+  //  transition-duration: 300ms;
+  //  translate: 5px 0;
+  //}
 
-    li {
-      flex-grow: 1;
-      width: 10em;
+  .hand {
+    pointer-events: none;
+    font-size: 50px;
+    animation: wave 3s infinite ease-in-out;
 
-      a {
-        opacity: 0.75;
-        box-shadow: none;
-        background-color: transparent;
-
-        &:hover {
-          opacity: 1;
-          box-shadow: none;
-        }
+    @keyframes wave {
+      0% {
+        translate: -1px 0;
+        rotate: -40deg;
+      }
+      50% {
+        translate: 1px 0;
+        rotate: 20deg;
+      }
+      100% {
+        translate: -1px 0;
+        rotate: -40deg;
       }
     }
   }
@@ -66,4 +82,11 @@
   width: 100%;
   max-width: 30em;
   margin: 50px auto 0;
+}
+
+@media screen and (min-width: consts.$tablet) {
+  .contact .content .top {
+    flex-flow: row;
+    gap: 30px;
+  }
 }
