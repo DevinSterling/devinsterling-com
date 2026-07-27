@@ -38,12 +38,12 @@ export default function Tabs<T>({
     if (!selectorRef.current) return;
 
     const parent = selectorRef.current.parentElement!;
-    const tabs = parent.children;
+    const tabElements = parent.children;
     const selectorStyle = selectorRef.current.style;
     const text = selectedTab?.text;
 
-    for (let i = 0; i < tabs.length; i++) {
-      const el = tabs[i] as HTMLElement;
+    for (let i = 0; i < tabElements.length; i++) {
+      const el = tabElements[i] as HTMLElement;
 
       // Use `title` if there is no text node)
       if (el.title === text || el.textContent === text) {

@@ -17,9 +17,10 @@ export async function submitContactMessage(contactData: FormData) {
     });
   } catch (err) {
     console.error(err);
-    throw Error(`Unknown browser error: ${ERROR_TEXT} (More details in logs)`);
+    throw Error(`Unknown browser error: ${ERROR_TEXT} (More details in logs)`, { cause: err });
   }
 
-  if (!response.ok)
-    throw Error(`${response.status}: ${response.statusText} - ${ERROR_TEXT}`)
+  if (!response.ok) {
+    throw Error(`${response.status}: ${response.statusText} - ${ERROR_TEXT}`);
+  }
 }

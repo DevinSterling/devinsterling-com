@@ -19,7 +19,7 @@ export const C: Language = {
   link: 'https://en.cppreference.com/w/c/language',
 };
 
-export const Rust: Language = {
+export const RUST: Language = {
   name: 'Rust',
   icon: icons.IconBrandRust,
   link: 'https://www.rust-lang.org/',

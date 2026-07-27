@@ -5,14 +5,14 @@ import Image from '../../model/Image.ts';
 const images: Image[] = [
   {
     src: '/images/rbook/rbook.png',
-    alt: 'The rbook library'
+    alt: 'The rbook library',
   }
 ]
 
 const RBOOK: Project = {
   name: 'rbook',
   link: 'https://github.com/devinsterling/rbook',
-  languages: [language.Rust],
+  languages: [language.RUST],
   technologies: [],
   introduction: 'A fast, format-agnostic, ergonomic ebook library with a focus on EPUB.',
   synopsis:

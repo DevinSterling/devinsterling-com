@@ -29,7 +29,7 @@ export default function ProjectAutoView({ projects, slots, time, onSelectProject
   const [ playState, setPlayState ] = useState<PlayState>(PlayState.PLAY);
   const { ref, inView } = useInView({
     threshold: SCROLL_THRESHOLD,
-    onChange: (inView => setPlayState(inView ? PlayState.PLAY : PlayState.STOP)),
+    onChange: (isInView => setPlayState(isInView ? PlayState.PLAY : PlayState.STOP)),
   });
 
   // Projects to currently show within the view

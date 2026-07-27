@@ -1,4 +1,4 @@
-import { FormEvent, HTMLAttributes } from 'react';
+import { SubmitEvent, HTMLAttributes } from 'react';
 import { FormState } from './FormState.ts';
 import { NotificationType } from '../ui/notification/NotificationType.ts';
 import Notification from '../ui/notification/Notification.tsx';
@@ -21,7 +21,7 @@ function createNotification(context: FormContext) {
 }
 
 export default function Form({ context, onRequestSubmit, ...props }: FormProps) {
-  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const onSubmit = (event: SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
     onRequestSubmit(new FormData(event.currentTarget));
   };

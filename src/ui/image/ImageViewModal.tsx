@@ -41,7 +41,7 @@ export default function ImageViewModal({ images, ...props }: ImageViewModalProps
         <Tabs className={styles.image_selection}
               tabClassName={styles.image_tab}
               selectorClassName={styles.image_selector}
-              onTabChange={tab => setTab(tab)}
+              onTabChange={newTab => setTab(newTab)}
               tabs={tabs}
               selectedTab={tab} />
       </div>

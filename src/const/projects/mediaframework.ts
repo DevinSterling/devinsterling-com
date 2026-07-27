@@ -6,7 +6,7 @@ import * as technology from '../technologies.ts';
 const images: Image[] = [
   {
     src: '/images/media-framework/media-framework.png',
-    alt: 'Media Framework'
+    alt: 'Media Framework',
   }
 ]
 
