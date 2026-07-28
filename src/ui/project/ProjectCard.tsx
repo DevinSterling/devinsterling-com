@@ -1,4 +1,4 @@
-import { HTMLAttributes } from 'react';
+import { ComponentProps } from 'react';
 import { IconBrandGithub } from '@tabler/icons-react';
 import { ProjectCardVariant } from './ProjectCardVariant.ts';
 import Project from '../../model/project.ts';
@@ -9,7 +9,7 @@ import ChipLink from '../button/ChipLink.tsx';
 import ImageView from '../image/ImageView.tsx';
 import styles from './ProjectCard.module.scss'
 
-interface ProjectCardProps extends ModalAware, HTMLAttributes<HTMLElement> {
+interface ProjectCardProps extends ModalAware, ComponentProps<'article'> {
   project: Project,
   variant?: ProjectCardVariant,
 }

@@ -1,8 +1,8 @@
-import { ButtonHTMLAttributes } from 'react';
+import { ComponentProps } from 'react';
 import { Icon } from '@tabler/icons-react';
 import styles from './PillButton.module.css'
 
-interface PillButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface PillButtonProps extends ComponentProps<'button'> {
   Icon?: Icon,
   signatureColor?: boolean,
 }

@@ -1,10 +1,10 @@
-import { SubmitEvent, HTMLAttributes } from 'react';
+import { ComponentProps, SubmitEvent } from 'react';
 import { FormState } from './FormState.ts';
 import { NotificationType } from '../ui/notification/NotificationType.ts';
 import Notification from '../ui/notification/Notification.tsx';
 import FormContext from './FormContext.ts';
 
-interface FormProps extends HTMLAttributes<HTMLFormElement> {
+interface FormProps extends ComponentProps<'form'> {
   context: FormContext,
   onRequestSubmit(data: FormData): void,
 }

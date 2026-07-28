@@ -1,4 +1,4 @@
-import { ImgHTMLAttributes, useState } from 'react';
+import { ComponentProps, useState } from 'react';
 import { IconMaximize } from '@tabler/icons-react';
 import ModalAware from '../modal/ModalAware.ts';
 import CustomButton from '../button/CustomButton.tsx';
@@ -6,7 +6,7 @@ import ImageViewModal from './ImageViewModal.tsx';
 import Image from '../../model/Image.ts';
 import styles from './ImageView.module.scss';
 
-interface ImageProps extends ModalAware, ImgHTMLAttributes<HTMLImageElement> {
+interface ImageViewProps extends ModalAware, ComponentProps<'div'> {
   images: Image[],
   image?: Image,
 }

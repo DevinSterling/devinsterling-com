@@ -1,6 +1,6 @@
-import { HTMLAttributes } from 'react';
+import { ComponentProps } from 'react';
 
-interface FormLabelProps extends HTMLAttributes<HTMLLabelElement> {
+interface FormLabelProps extends ComponentProps<'label'> {
   label: string,
 }
 

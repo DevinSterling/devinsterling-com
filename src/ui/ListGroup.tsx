@@ -1,7 +1,7 @@
-import { HTMLAttributes, PropsWithChildren } from 'react';
+import { ComponentProps } from 'react';
 import styles from './BarGroup.module.css';
 
-interface ListGroupProps extends HTMLAttributes<HTMLUListElement> {
+interface ListGroupProps extends ComponentProps<'ul'> {
   spacing?: number,
 }
 
@@ -13,7 +13,7 @@ export default function ListGroup({ className = '', spacing, style, ...props }: 
   );
 }
 
-ListGroup.Item = function(props: PropsWithChildren) {
+ListGroup.Item = function(props: ComponentProps<'li'>) {
   return (
     <li {...props} />
   );

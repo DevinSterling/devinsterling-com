@@ -1,10 +1,10 @@
-import { HTMLAttributes } from 'react';
+import { ComponentProps } from 'react';
 import { Link } from 'react-router';
 import { Icon, IconArrowUpRight } from '@tabler/icons-react';
 import Project from '../../model/project.ts';
 import styles from './ProjectGridItem.module.scss';
 
-interface ProjectGridItemProps extends HTMLAttributes<HTMLLIElement> {
+interface ProjectGridItemProps extends ComponentProps<'li'> {
   project: Project
 }
 

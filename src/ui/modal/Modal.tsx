@@ -1,8 +1,8 @@
-import { HTMLAttributes, KeyboardEvent, useEffect, useRef } from 'react';
+import { ComponentPropsWithoutRef, KeyboardEvent, useEffect, useRef } from 'react';
 import ModalAware from './ModalAware.ts';
 import styles from './Modal.module.scss';
 
-export interface ModalProps extends ModalAware, HTMLAttributes<HTMLDialogElement> {
+export interface ModalProps extends ModalAware, ComponentPropsWithoutRef<'dialog'> {
   show: boolean,
   requestClose(): void,
 }
