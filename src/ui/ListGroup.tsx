@@ -1,5 +1,5 @@
 import { ComponentProps } from 'react';
-import styles from './BarGroup.module.css';
+import styles from './ListGroup.module.css';
 
 interface ListGroupProps extends ComponentProps<'ul'> {
   spacing?: number,
