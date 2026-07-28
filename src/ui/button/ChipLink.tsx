@@ -1,6 +1,6 @@
 import { Link, LinkProps } from 'react-router';
 import { Icon } from '@tabler/icons-react';
-import styles from './ChipLink.module.css';
+import styles from './ChipLink.module.scss';
 
 interface ChipProps extends LinkProps {
   Icon?: Icon,

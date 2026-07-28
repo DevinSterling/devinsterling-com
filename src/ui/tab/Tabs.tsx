@@ -3,7 +3,7 @@ import { Icon } from '@tabler/icons-react'
 import { TabStyle } from './TabStyle.ts';
 import { wrapIndex } from '../../util';
 import PillButton from '../button/PillButton.tsx';
-import styles from './Tabs.module.css'
+import styles from './Tabs.module.scss'
 
 export interface Tab<T> {
   text: string,

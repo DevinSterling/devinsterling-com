@@ -1,6 +1,6 @@
 import { Link, LinkProps } from 'react-router';
 import { Icon } from '@tabler/icons-react';
-import styles from './PillButton.module.css'
+import styles from './PillButton.module.scss'
 
 interface PillButtonProps extends LinkProps {
   Icon?: Icon,

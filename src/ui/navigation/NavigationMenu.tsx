@@ -1,6 +1,6 @@
 import { GITHUB_LINK } from '../../const/values.ts';
 import NavigationLink from './NavigationLink.tsx';
-import styles from './NavigationMenu.module.css'
+import styles from './NavigationMenu.module.scss'
 
 interface NavigationMenuProps {
   setShowNav: (show: boolean) => void,

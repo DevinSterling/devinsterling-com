@@ -1,5 +1,5 @@
 import { createElement, HTMLAttributes, JSX, UIEvent, KeyboardEvent, MouseEvent } from 'react';
-import styles from './CustomButton.module.css';
+import styles from './CustomButton.module.scss';
 
 interface CustomButtonProps extends HTMLAttributes<HTMLElement> {
   as?: keyof JSX.IntrinsicElements,
