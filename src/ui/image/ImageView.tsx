@@ -18,7 +18,7 @@ export default function ImageView({
   onModalShow,
   onModalClose,
   ...props
-}: ImageProps) {
+}: ImageViewProps) {
   const [ showImageView, setShowImageView ] = useState<boolean>(false);
   const img_props = { src: image?.src, alt: image?.alt}
 
