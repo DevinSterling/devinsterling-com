@@ -9,6 +9,7 @@ const SCROLL_THRESHOLD = 0.75;
 export default function Home() {
   const overlayStore = useOverlayStore();
   const { ref, inView } = useInView({
+    initialInView: true,
     threshold: SCROLL_THRESHOLD,
     onChange: (isInView => overlayStore.setMinimized(!isInView)),
   });
@@ -25,4 +26,3 @@ export default function Home() {
     </>
   );
 }
-
