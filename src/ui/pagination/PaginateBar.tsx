@@ -42,7 +42,7 @@ export default function PaginateBar({
     <nav className={styles.container} role={'navigation'} aria-label="Pagination">
       <PillButton className={styles.previous} Icon={IconChevronLeft} onClick={onPrevious} title={`Previous Page`} />
       <PillButton className={styles.next} Icon={IconChevronRight} onClick={onNext} title={`Next Page`} />
-      <ul className={styles.pages}>
+      <ol className={styles.pages}>
         {Array.from({length}, (_, i) => {
           const isSelected = i === selected;
 
@@ -55,7 +55,7 @@ export default function PaginateBar({
             </li>
           )
         })}
-      </ul>
+      </ol>
     </nav>
   )
 }
