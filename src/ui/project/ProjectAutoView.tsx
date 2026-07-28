@@ -57,20 +57,20 @@ export default function ProjectAutoView({ projects, slots, time, onSelectProject
     <div ref={ref} className={styles.spaced}>
       <ul>
         {selection.map((project, i) => (
-          <CustomButton as='li'
-                        key={project.name}
-                        onClick={() => onSelectProject(project)}
-                        onMouseOver={setStop}
-                        onMouseLeave={setPlaying}
-                        onFocus={setStop}
-                        onBlur={setPlaying}>
-            <ProjectCard project={project}
-                         style={{ animationDelay: `${i*100}ms` }}
-                         className={`${styles.auto_card} ${i % 2 ? styles.change_alt : styles.change}`}
-                         variant={i % 2 ? ProjectCardVariant.MINI_RIGHT : ProjectCardVariant.MINI_LEFT}
-                         onModalShow={onModalShow}
-                         onModalClose={onModalClose}/>
-          </CustomButton>
+          <li key={project.name}
+              onMouseOver={setStop}
+              onMouseLeave={setPlaying}>
+            <CustomButton onClick={() => onSelectProject(project)}
+                          onFocus={setStop}
+                          onBlur={setPlaying}>
+              <ProjectCard project={project}
+                           style={{ animationDelay: `${i*100}ms` }}
+                           className={`${styles.auto_card} ${i % 2 ? styles.change_alt : styles.change}`}
+                           variant={i % 2 ? ProjectCardVariant.MINI_RIGHT : ProjectCardVariant.MINI_LEFT}
+                           onModalShow={onModalShow}
+                           onModalClose={onModalClose}/>
+            </CustomButton>
+          </li>
         ))}
       </ul>
       <PaginateBar length={Math.ceil(projects.length / slots)}
