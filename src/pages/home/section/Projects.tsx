@@ -48,7 +48,6 @@ export default function Projects() {
     document.getElementById(ID)?.scrollIntoView({ behavior: 'smooth' })
 
     // Update context to show the requested project
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setContext(prev => {
       // Guard to avoid re-rendering
       if (prev.tab === CAROUSEL_VIEW && prev.project === project) {
@@ -72,7 +71,11 @@ export default function Projects() {
                                   setContext({ tab: CAROUSEL_VIEW, project });
                                 }}/>;
       case CAROUSEL_VIEW:
-        return <ProjectCarouselView projects={ALL_PROJECTS} defaultProject={context.project} />;
+        return <ProjectCarouselView projects={ALL_PROJECTS}
+                                    defaultProject={context.project}
+                                    onProjectChange={project => {
+                                      setContext(prev => ({ ...prev, project: project }));
+                                    }}/>;
       default:
         return <ProjectGridView projects={ALL_PROJECTS} />;
     }
@@ -83,7 +86,7 @@ export default function Projects() {
       <div className={styles.content}>
         <div className={styles.project_title_bar}>
           <h2>Projects</h2>
-          <Tabs onTabChange={tab => setContext({tab})}
+          <Tabs onTabChange={tab => setContext(prev => ({ ...prev, tab }))}
                 tabs={PROJECT_VIEWS}
                 selectedTab={context.tab} />
         </div>

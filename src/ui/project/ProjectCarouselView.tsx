@@ -8,29 +8,38 @@ import styles from './ProjectCarouselView.module.scss';
 interface ProjectCarouselViewProps {
   projects: Project[],
   defaultProject?: Project,
+  onProjectChange?: (project: Project) => void,
 }
 
-export default function ProjectCarouselView({ projects, defaultProject }: ProjectCarouselViewProps) {
+export default function ProjectCarouselView({ projects, defaultProject, onProjectChange }: ProjectCarouselViewProps) {
   const projectTabs: Tab<Project>[] = useMemo(() =>
     projects.map(project => ({
       text: project.name,
       data: project,
     })
   ), [projects]);
-  const [ project, setProject ] = useState<Tab<Project>|undefined>(
+
+  const [ project, setProject ] = useState<Tab<Project> | undefined>(() =>
     defaultProject
       ? projectTabs.find(p => p.data === defaultProject)
       : projectTabs[0]
   );
 
+  const onTabChange = (tab: Tab<Project>) => {
+    setProject(tab);
+    if (tab.data) {
+      onProjectChange?.(tab.data);
+    }
+  };
+
   return (
     <>
       <Tabs tabsStyle={TabStyle.FLAT}
-            onTabChange={tab => setProject(tab)}
+            onTabChange={onTabChange}
             tabs={projectTabs}
             className={styles.carousel_tabs}
             selectedTab={project} />
-      <div className={styles.carousel}>
+      <div key={project?.text} className={styles.carousel}>
         {project?.data && <ProjectCard project={project.data} className={styles.main_card}/>}
       </div>
     </>
