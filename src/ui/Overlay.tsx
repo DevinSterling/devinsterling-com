@@ -29,7 +29,7 @@ export default function Overlay() {
            onBlur={() => setShowNav(false)}>
         <div className={styles.top_bar}>
           <button className={styles.nav_button} tabIndex={-1}>
-            <IconMenu/>
+            { overlayStore.minimized ? <IconMenu/> : <img src='/icon.png' alt='The initials D.S.' /> }
           </button>
           <Link to='#home'
                 onMouseOver={doScramble}
