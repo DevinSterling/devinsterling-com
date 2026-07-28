@@ -25,7 +25,7 @@ const images: Image[] = [
     alt: 'Recipe Page - Cancel Review Modal: Appears when clicking the cancel review button',
   }, {
     src: '/images/urfood/urfood_recipe_page_login_modal.png',
-    alt: 'Login Modal: Appears when attempting to performa a task that requires an account',
+    alt: 'Login Modal: Appears when attempting to perform a task that requires an account',
   }, {
     src: '/images/urfood/urfood_404.png',
     alt: '404 Page: When a user requests a non-existent page, they\'re redirected to this one',
