@@ -49,7 +49,7 @@ export default function ProjectAutoView({ projects, slots, time, onSelectProject
     prev === PlayState.DISABLED || !inView ? prev : PlayState.PLAY
   ));
   const setUserIteration: (iteration: number) => void = i => {
-    setIteration(i * 2);
+    setIteration(i * slots);
     setPlayState(PlayState.STOP);
   }
 
@@ -74,7 +74,7 @@ export default function ProjectAutoView({ projects, slots, time, onSelectProject
         ))}
       </ul>
       <PaginateBar length={Math.ceil(projects.length / slots)}
-                   selected={Math.floor((iteration / 2) % projects.length)}
+                   selected={Math.floor((iteration / slots) % projects.length)}
                    onSelectedChange={setUserIteration}
                    autoIncrementTime={time}
                    autoIncrementPlayState={playState} />
