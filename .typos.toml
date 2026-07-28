@@ -1,0 +1,3 @@
+[type.ipsum-lorem]
+extend-glob = ["Intro.tsx"]
+extend-words = { Nam = "Nam" }  # Ipsum Lorem `Nam` is falsely flagged
