@@ -18,9 +18,12 @@ interface ProjectsAutoViewProps {
 const SCROLL_THRESHOLD = 0.5;
 
 function computeSelection(projects: Project[], slots: number, iteration: number): Project[] {
-  const selection = projects.slice(iteration, iteration + slots);
-  const cutoff = (iteration + slots) % projects.length;
-  if (cutoff < iteration) selection.push(...projects.slice(0, cutoff));
+  const start = iteration % projects.length;
+  const selection = projects.slice(start, start + slots);
+
+  if (selection.length < slots) {
+    selection.push(...projects.slice(0, slots - selection.length));
+  }
   return selection;
 }
 

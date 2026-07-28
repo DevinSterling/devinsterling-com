@@ -1,5 +1,4 @@
 import { ComponentProps } from 'react';
-import { IconBrandGithub } from '@tabler/icons-react';
 import { ProjectCardVariant } from './ProjectCardVariant.ts';
 import Project from '../../model/project.ts';
 import ModalAware from '../modal/ModalAware.ts';

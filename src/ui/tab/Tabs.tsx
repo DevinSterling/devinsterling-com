@@ -33,45 +33,43 @@ export default function Tabs<T>({
   selectedTab
 }: TabsProps<T>) {
   const selectorRef = useRef<HTMLDivElement>(null);
+  const tabElementsRef = useRef<Map<Tab<T>, HTMLElement>>(new Map());
 
   useEffect(() => {
-    if (!selectorRef.current) return;
-
-    const parent = selectorRef.current.parentElement!;
-    const tabElements = parent.children;
-    const selectorStyle = selectorRef.current.style;
-    const text = selectedTab?.text;
-
-    for (let i = 0; i < tabElements.length; i++) {
-      const el = tabElements[i] as HTMLElement;
-
-      // Use `title` if there is no text node)
-      if (el.title === text || el.textContent === text) {
-        // Set focus to the new tab
-        if (document.activeElement?.parentElement === parent) el.focus();
-
-        // Update selector appearance
-        selectorStyle.display = 'block';
-        selectorStyle.left = `${el.offsetLeft}px`;
-        selectorStyle.top = `${el.offsetTop}px`;
-        selectorStyle.width = `${el.offsetWidth}px`;
-        selectorStyle.height = `${el.offsetHeight}px`;
-        return;
-      }
-    }
+    const selectorStyle = selectorRef.current?.style;
+    if (!selectorStyle || !selectedTab) return;
     selectorStyle.display = 'none';
-  }, [selectedTab, selectorRef]);
+
+    const tabElement = tabElementsRef.current.get(selectedTab);
+    if (tabElement) {
+      // Set focus to the new tab.
+      // - Only request focus if the user is currently interacting within THIS tablist.
+      const tabList = tabElement.parentElement;
+      if (tabList === document.activeElement?.parentElement) {
+        tabElement.focus();
+      }
+
+      // Update selector appearance
+      selectorStyle.display = 'block';
+      selectorStyle.left = `${tabElement.offsetLeft}px`;
+      selectorStyle.top = `${tabElement.offsetTop}px`;
+      selectorStyle.width = `${tabElement.offsetWidth}px`;
+      selectorStyle.height = `${tabElement.offsetHeight}px`;
+    }
+  }, [selectedTab]);
 
   const onKeyPress = (event: KeyboardEvent) => {
     if (!selectedTab) return;
-    switch (event.code) {
+    const currentIndex = tabs.indexOf(selectedTab);
+
+    switch (event.key) {
       case 'ArrowUp':
       case 'ArrowLeft':
-        onTabChange(tabs[wrapIndex(tabs.indexOf(selectedTab) - 1, tabs.length)])
+        onTabChange(tabs[wrapIndex(currentIndex - 1, tabs.length)])
         break;
       case 'ArrowDown':
       case 'ArrowRight':
-        onTabChange(tabs[wrapIndex(tabs.indexOf(selectedTab) + 1, tabs.length)])
+        onTabChange(tabs[wrapIndex(currentIndex + 1, tabs.length)])
         break;
       default:
         return;
@@ -84,6 +82,10 @@ export default function Tabs<T>({
       <div ref={selectorRef} className={`${styles.selector} ${selectorClassName}`} />
       {tabs.map((tab, i) => (
         <PillButton key={`${i}#${tab.text}`}
+                    ref={el => {
+                      if (el) tabElementsRef.current.set(tab, el);
+                      else    tabElementsRef.current.delete(tab);
+                    }}
                     className={tabClassName}
                     title={tab.hideText ? tab.text : undefined}
                     role='tab'
