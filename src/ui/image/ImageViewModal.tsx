@@ -12,14 +12,12 @@ interface ImageViewModalProps extends ModalProps {
 
 export default function ImageViewModal({ images, ...props }: ImageViewModalProps) {
   // `tabs` will contain nothing if `images` contains nothing
-  const tabs = useMemo<Tab<Image>[]>(() => images.map(image => (
-    {
-      text: image.alt,
-      hideText: true,
-      graphic: <img src={image.src} alt={image.alt}/>,
-      data: image,
-    }
-  )), [images]);
+  const tabs = useMemo<Tab<Image>[]>(() => images.map(image => ({
+    text: image.alt,
+    hideText: true,
+    graphic: <img src={image.src} alt={image.alt}/>,
+    data: image,
+  })), [images]);
   const [ tab, setTab ] = useState<Tab<Image>>(tabs[0]);
 
   const onClick = (event: MouseEvent<HTMLDialogElement>) => {

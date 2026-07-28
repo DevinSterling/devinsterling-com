@@ -8,4 +8,4 @@ export interface OverlayState {
 export const useOverlayStore = create<OverlayState>(set => ({
   minimized: false,
   setMinimized: minimized => set({ minimized }),
-}))
+}));
