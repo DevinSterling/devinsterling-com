@@ -1,6 +1,7 @@
+import { Link } from "../../model/link.ts";
 import Project from '../../model/project.ts';
-import * as language from '../languages.ts';
 import Image from '../../model/Image.ts';
+import * as language from '../languages.ts';
 
 const images: Image[] = [
   {
@@ -11,7 +12,11 @@ const images: Image[] = [
 
 const RBOOK: Project = {
   name: 'rbook',
-  link: 'https://github.com/devinsterling/rbook',
+  links: [
+    Link.cratesIo('https://crates.io/crates/rbook'),
+    Link.docsRs('https://docs.rs/rbook'),
+    Link.github('https://github.com/devinsterling/rbook'),
+  ],
   languages: [language.RUST],
   technologies: [],
   introduction: 'A fast, format-agnostic, ergonomic ebook library with a focus on EPUB.',

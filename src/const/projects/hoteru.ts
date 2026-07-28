@@ -1,3 +1,4 @@
+import { Link } from "../../model/link.ts";
 import Image from '../../model/Image.ts';
 import Project from '../../model/project.ts';
 import * as language from '../languages.ts';
@@ -72,7 +73,7 @@ const images: Image[] = [
 
 const Hoteru: Project = {
   name: 'Hoteru',
-  link: 'https://github.com/devinsterling/hoteru',
+  links: [Link.github('https://github.com/devinsterling/hoteru')],
   languages: [language.PHP, language.JAVASCRIPT, language.SQL],
   technologies: [technology.BOOTSTRAP],
   introduction: 'A hotel website that allows guests to make reservations for their desired rooms.',

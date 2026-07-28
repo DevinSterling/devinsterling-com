@@ -1,3 +1,4 @@
+import { Link } from "../../model/link.ts";
 import Project from '../../model/project.ts';
 import Image from '../../model/Image.ts';
 import * as language from '../languages.ts';
@@ -15,7 +16,7 @@ const images: Image[] = [
 
 const BASED_FX: Project = {
   name: 'BasedFX',
-  link: 'https://github.com/devinsterling/BasedFX',
+  links: [Link.github('https://github.com/devinsterling/BasedFX')],
   languages: [language.JAVA],
   technologies: [technology.JAVAFX],
   introduction: 'An easy-to-use educational tool about the different number base systems (Base 2 to 36).',

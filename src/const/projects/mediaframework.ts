@@ -1,3 +1,4 @@
+import { Link } from "../../model/link.ts";
 import Project from '../../model/project.ts';
 import Image from '../../model/Image.ts';
 import * as language from '../languages.ts';
@@ -12,7 +13,7 @@ const images: Image[] = [
 
 const MEDIA: Project = {
   name: 'Media Framework',
-  link: 'https://github.com/devinsterling/Kuruma',
+  links: [Link.github('https://github.com/devinsterling/Kuruma')],
   languages: [language.JAVA, language.SQL],
   technologies: [technology.JAVAFX, technology.DAGGER],
   introduction: '(Codename: Media Framework) In development cross-platform modular multi-media manager/player framework.',

@@ -1,3 +1,4 @@
+import { Link } from "../../model/link.ts";
 import Project from '../../model/project.ts';
 import Image from '../../model/Image.ts';
 import * as language from '../languages.ts';
@@ -39,7 +40,7 @@ const images: Image[] = [
 
 const URFOOD: Project = {
   name: 'Urfood',
-  link: 'https://github.com/devinsterling/Urfood',
+  links: [Link.github('https://github.com/devinsterling/Urfood')],
   languages: [language.JAVA, language.JAVASCRIPT],
   technologies: [technology.SPRING, technology.REACTJS],
   introduction:

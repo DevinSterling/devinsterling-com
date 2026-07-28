@@ -28,7 +28,14 @@ export default function ProjectCard({
              style={{ filter: `drop-shadow(10em -10em 10em color-mix(in srgb, ${project.color}, transparent 85%))` }}>
       <div className={styles.title_container}>
         <h3 className={styles.project_title} style={{ backgroundColor: project.color }}>{project.name}</h3>
-        <PillLinkButton to={project.link} Icon={IconBrandGithub} title='GitHub' target='_blank' signatureColor/>
+        {project.links.map(link => (
+          <PillLinkButton key={link.url}
+                          to={link.url}
+                          Icon={link.icon}
+                          title={link.title}
+                          target='_blank'
+                          signatureColor/>
+        ))}
       </div>
       <div className={styles.chips}>
         <div className={styles.languages}>

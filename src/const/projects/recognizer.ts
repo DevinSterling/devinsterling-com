@@ -1,3 +1,4 @@
+import { Link } from "../../model/link.ts";
 import Project from '../../model/project.ts';
 import Image from '../../model/Image.ts';
 import * as language from '../languages.ts';
@@ -24,7 +25,7 @@ const images: Image[] = [
 
 const RECOGNIZER: Project = {
   name: 'Recognizer',
-  link: 'https://github.com/devinsterling/recognizer',
+  links: [Link.github('https://github.com/devinsterling/recognizer')],
   languages: [language.PYTHON],
   technologies: [technology.FASTAPI, technology.DEEPL],
   introduction: 'A multi-purpose facial recognition attendance monitoring API service.',

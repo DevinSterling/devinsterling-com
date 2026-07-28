@@ -16,7 +16,7 @@ export default function ProjectGridItem({ project, ...props }: ProjectGridItemPr
           filter: `drop-shadow(5em 5em 10em color-mix(in srgb, ${project.color}, transparent 90%))`,
           ...props.style
         }}>
-      <Link to={project.link} target='_blank' className={styles.content}>
+      <Link to={project.links[0]?.url} target='_blank' className={styles.content}>
         <div className={styles.image_container}>
           <img src={project.thumbnail?.src} alt={project.thumbnail?.alt} className={styles.project_image}/>
           <IconArrowUpRight className={styles.external_link} />

@@ -1,3 +1,4 @@
+import { Link } from "../../model/link.ts";
 import Project from '../../model/project.ts';
 import Image from '../../model/Image.ts';
 import * as language from '../languages.ts';
@@ -12,7 +13,11 @@ const images: Image[] = [
 
 const LOCALIZE: Project = {
   name: 'Localize',
-  link: 'https://github.com/devinsterling/localize',
+  links: [
+    Link.github('https://github.com/devinsterling/localize'),
+    Link.sonatype('https://central.sonatype.com/artifact/com.devinsterling/localize-base'),
+    Link.javaDoc('https://javadoc.io/doc/com.devinsterling/localize-base'),
+  ],
   languages: [language.JAVA],
   technologies: [technology.JAVAFX],
   introduction: 'A lightweight threadsafe Java localization library alongside an optional JavaFX integration module.',

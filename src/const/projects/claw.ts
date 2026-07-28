@@ -1,3 +1,4 @@
+import { Link } from "../../model/link.ts";
 import Project from '../../model/project.ts';
 import Image from '../../model/Image.ts';
 import * as language from '../languages.ts';
@@ -18,7 +19,7 @@ const images: Image[] = [
 
 const CLAW: Project = {
   name: 'CLAW',
-  link: 'https://github.com/devinsterling/CLAW',
+  links: [Link.github('https://github.com/devinsterling/CLAW')],
   languages: [language.PYTHON, language.C],
   technologies: [technology.TKINTER, technology.ARDUINO],
   introduction: 'A graphical interface to control a servo over a serial communication channel.',

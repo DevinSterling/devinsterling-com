@@ -1,3 +1,4 @@
+import { Link } from "../../model/link.ts";
 import Project from '../../model/project.ts';
 import Image from '../../model/Image.ts';
 import * as language from '../languages.ts';
@@ -65,7 +66,7 @@ const images: Image[] = [
 
 const KURUMA: Project = {
   name: 'Kuruma',
-  link: 'https://github.com/devinsterling/Kuruma',
+  links: [Link.github('https://github.com/devinsterling/Kuruma')],
   languages: [language.PHP, language.SQL],
   technologies: [],
   introduction: 'Platform to conveniently purchase vehicles eliminating the hassle of dealerships.',

@@ -1,3 +1,4 @@
+import { Link } from "../../model/link.ts";
 import Project from '../../model/project.ts';
 import Image from '../../model/Image.ts';
 import * as language from '../languages.ts';
@@ -85,7 +86,7 @@ const images: Image[] = [
 
 const VIRAL: Project = {
   name: 'Viral',
-  link: 'https://github.com/devinsterling/Viral',
+  links: [Link.github('https://github.com/devinsterling/Viral')],
   languages: [language.TYPESCRIPT],
   technologies: [technology.NODEJS, technology.REACTJS, technology.BOOTSTRAP],
   introduction: 'An expressive social media platform based on Reddit utilizing Markdown.',

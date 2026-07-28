@@ -1,3 +1,4 @@
+import { Link } from "../../model/link.ts";
 import Project from '../../model/project.ts';
 import Image from '../../model/Image.ts';
 import * as language from '../languages.ts';
@@ -46,7 +47,7 @@ const images: Image[] = [
 
 const GOLDMAN_STACKS: Project = {
   name: 'Goldman Stacks',
-  link: 'https://github.com/devinsterling/GoldmanStacks',
+  links: [Link.github('https://github.com/devinsterling/GoldmanStacks')],
   languages: [language.PHP, language.JAVASCRIPT, language.SQL],
   technologies: [technology.JQUERY],
   introduction: 'Proof of concept banking application that handles transactions, transfers, withdrawals, and deposits.',

@@ -1,10 +1,11 @@
 import Language from './language.ts';
 import Image from './Image.ts';
+import Link from "./link.ts";
 import Technology from './technology.ts';
 
 export default interface Project {
   name: string,
-  link: string,
+  links: Link[],
   languages: Language[],
   technologies: Technology[],
   introduction: string,
