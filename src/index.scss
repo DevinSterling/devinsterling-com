@@ -71,6 +71,7 @@ a, button {
   cursor: pointer;
   text-decoration: inherit;
   transition: box-shadow 250ms;
+  background-color: transparent;
 
   &:hover {
     color: var(--theme-text);
