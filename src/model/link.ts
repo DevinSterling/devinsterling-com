@@ -3,43 +3,18 @@ import * as icons from "@tabler/icons-react";
 export default interface Link {
   icon?: icons.Icon,
   title?: string,
-  url: string,
+  url: URL,
 }
 
 export const Link = {
-  github(url: string): Link {
-    return {
-      icon: icons.IconBrandGithub,
-      title: 'Github',
-      url
-    };
-  },
-  cratesIo(url: string): Link {
-    return {
-      icon: icons.IconPackage,
-      title: 'crates.io (Rust Software Registry)',
-      url,
-    };
-  },
-  docsRs(url: string): Link {
-    return {
-      icon: icons.IconVocabulary,
-      title: 'docs.rs (Rust Software Documentation)',
-      url,
-    };
-  },
-  sonatype(url: string): Link {
-    return {
-      icon: icons.IconHexagon,
-      title: 'Sonatype (Java Software Registry)',
-      url,
-    }
-  },
-  javaDoc(url: string): Link {
-    return {
-      icon: icons.IconVocabulary,
-      title: 'javadoc.io (Java Software Documentation)',
-      url,
-    }
-  },
+  of: (url: string, icon?: icons.Icon, title?: string): Link => ({
+    url: new URL(url),
+    icon,
+    title,
+  }),
+  github:   (url: string): Link => Link.of(url, icons.IconBrandGithub, 'Github'),
+  cratesIo: (url: string): Link => Link.of(url, icons.IconPackage, 'crates.io (Rust Software Registry)'),
+  docsRs:   (url: string): Link => Link.of(url, icons.IconVocabulary, 'docs.rs (Rust Software Documentation)'),
+  sonatype: (url: string): Link => Link.of(url, icons.IconHexagon, 'Sonatype (Java Software Registry)'),
+  javaDoc:  (url: string): Link => Link.of(url, icons.IconVocabulary, 'javadoc.io (Java Software Documentation)'),
 };

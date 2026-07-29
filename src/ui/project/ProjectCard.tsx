@@ -28,8 +28,8 @@ export default function ProjectCard({
       <div className={styles.title_container}>
         <h3 className={styles.project_title} style={{ backgroundColor: project.color }}>{project.name}</h3>
         {project.links.map(link => (
-          <PillLinkButton key={link.url}
-                          to={link.url}
+          <PillLinkButton key={link.url.href}
+                          to={link.url.href}
                           Icon={link.icon}
                           title={link.title}
                           target='_blank'
