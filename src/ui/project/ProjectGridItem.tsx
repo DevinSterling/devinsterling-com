@@ -19,7 +19,10 @@ export default function ProjectGridItem({ project, ...props }: ProjectGridItemPr
       <Link to={project.links[0]?.url.href} target='_blank' className={styles.content}>
         <div className={styles.image_container}>
           <img src={project.thumbnail?.src} alt={project.thumbnail?.alt} className={styles.project_image}/>
-          <IconArrowUpRight className={styles.external_link} />
+          <span className={styles.external_link}>
+            <span className={styles.text}>{project.links[0]?.url.hostname}</span>
+            <IconArrowUpRight />
+          </span>
         </div>
         <h3 className={styles.project_name} style={{ backgroundColor: project.color }}>{project.name}</h3>
         <p className={styles.project_synopsis}>{project.introduction}</p>

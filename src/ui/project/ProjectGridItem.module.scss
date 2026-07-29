@@ -1,20 +1,12 @@
 @use '../../const/constants' as consts;
 @use '../../util/animation' as animation;
 
-// Sass compiler warns if this is merged into the `.item` block below, so it placed separately here.
-//! Deprecation Warning: Sass's behavior for declarations that appear after nested
-//! rules will be changing to match the behavior specified by CSS in an upcoming
-//! version. To keep the existing behavior, move the declaration above the nested
-//! rule. To opt into the new behavior, wrap the declaration in `& {}`.
 .item {
   @include animation.from_direction(show-item, 0 30px, $fillMode: forwards, $scaleFrom: 1.1, $duration: 500ms);
-}
-
-.item {
-  width: 100%;
   // Opacity starts at 0 to make all items initially not visible.
   // The animation above handles making the items remain visible by setting the fill mode to `forwards`.
   opacity: 0;
+  width: 100%;
 
   .content {
     $duration: 300ms;
@@ -23,7 +15,13 @@
     padding: var(--grid-item-padding);
 
     &:hover, &:focus {
-      .image_container {
+      .image_container .external_link .text {
+        padding-left: 7px;
+        // This value is temporary and will be replaced when the `interpolate-size` feature becomes baseline.
+        max-width: 100px;
+      }
+
+      .image_container, .image_container img {
         scale: 1.05;
       }
 
@@ -39,23 +37,35 @@
 
     .image_container {
       transition-duration: $duration;
+      overflow: hidden;
       position: relative;
+      border-radius: calc(var(--theme-radii-partial) * 2);
 
       .project_image {
+        transition-duration: $duration;
         width: 100%;
-        height: 200px;
+        height: 225px;
         object-fit: cover;
         display: block;
-        border-radius: calc(var(--theme-radii-partial) * 2);
       }
 
       .external_link {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
         position: absolute;
         bottom: 10px;
         right: 10px;
         padding: 5px;
         background-color: var(--theme-background-2);
         border-radius: var(--theme-radii-full);
+
+        .text {
+          transition-duration: $duration;
+          overflow: hidden;
+          text-wrap: nowrap;
+          max-width: 0;
+        }
       }
     }
 
