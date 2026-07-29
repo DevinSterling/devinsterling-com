@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import {useCallback, useEffect, useState} from 'react';
 import { useSearchParams } from 'react-router';
 import { IconCarouselHorizontal, IconLayoutGrid, IconReplace } from '@tabler/icons-react';
 import Tabs, { Tab } from '../../../ui/tab/Tabs.tsx';
@@ -33,9 +33,18 @@ interface ViewContext {
 
 export const ID = 'projects';
 
+function scrollToProjects() {
+  document.getElementById(ID)?.scrollIntoView({ behavior: 'smooth' });
+}
+
 export default function Projects() {
   const [ context, setContext ] = useState<ViewContext>({ tab: AUTO_VIEW });
-  const [ params ] = useSearchParams()
+  const [ params ] = useSearchParams();
+
+  const switchToCarouselView = useCallback((project: Project) => {
+    scrollToProjects();
+    setContext({ tab: CAROUSEL_VIEW, project });
+  }, []);
 
   useEffect(() => {
     const requested = params.get("project")?.toLowerCase()
@@ -45,7 +54,7 @@ export default function Projects() {
     if (!project) return;
 
     // Ensure element is visible
-    document.getElementById(ID)?.scrollIntoView({ behavior: 'smooth' })
+    scrollToProjects();
 
     // Update context to show the requested project
     setContext(prev => {
@@ -62,22 +71,14 @@ export default function Projects() {
 
   const getView = () => {
     switch (context.tab) {
-      case AUTO_VIEW:
-        return <ProjectAutoView projects={ALL_PROJECTS}
-                                slots={2}
-                                time={10000}
-                                onSelectProject={project => {
-                                  document.getElementById(ID)!.scrollIntoView({ behavior: 'smooth' });
-                                  setContext({ tab: CAROUSEL_VIEW, project });
-                                }}/>;
       case CAROUSEL_VIEW:
         return <ProjectCarouselView projects={ALL_PROJECTS}
                                     defaultProject={context.project}
-                                    onProjectChange={project => {
-                                      setContext(prev => ({ ...prev, project: project }));
-                                    }}/>;
+                                    onProjectChange={project => setContext(prev => ({ ...prev, project }))}/>;
+      case AUTO_VIEW:
+        return <ProjectAutoView projects={ALL_PROJECTS} slots={2} time={10000} onSelectProject={switchToCarouselView}/>;
       default:
-        return <ProjectGridView projects={ALL_PROJECTS} />;
+        return <ProjectGridView projects={ALL_PROJECTS} onSelectProject={switchToCarouselView}/>;
     }
   };
 

@@ -8,11 +8,16 @@
   opacity: 0;
   width: 100%;
 
-  .content {
+  .btn {
     $duration: 300ms;
     height: 100%;
     display: block;
+    text-align: left;
     padding: var(--grid-item-padding);
+
+    .content {
+      height: 100%;
+    }
 
     &:hover, &:focus {
       .image_container .external_link .text {
