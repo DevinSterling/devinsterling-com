@@ -1,6 +1,7 @@
 import {useCallback, useEffect, useState} from 'react';
 import { useSearchParams } from 'react-router';
 import { IconCarouselHorizontal, IconLayoutGrid, IconReplace } from '@tabler/icons-react';
+import { scrollToById } from "../../../util/layout.ts";
 import Tabs, { Tab } from '../../../ui/tab/Tabs.tsx';
 import ProjectAutoView from '../../../ui/project/ProjectAutoView.tsx';
 import ProjectCarouselView from '../../../ui/project/ProjectCarouselView.tsx';
@@ -33,17 +34,13 @@ interface ViewContext {
 
 export const ID = 'projects';
 
-function scrollToProjects() {
-  document.getElementById(ID)?.scrollIntoView({ behavior: 'smooth' });
-}
-
 export default function Projects() {
   const [ context, setContext ] = useState<ViewContext>({ tab: AUTO_VIEW });
   const [ params ] = useSearchParams();
 
   const switchToCarouselView = useCallback((project: Project) => {
-    scrollToProjects();
     setContext({ tab: CAROUSEL_VIEW, project });
+    scrollToById(ID);
   }, []);
 
   useEffect(() => {
@@ -54,7 +51,7 @@ export default function Projects() {
     if (!project) return;
 
     // Ensure element is visible
-    scrollToProjects();
+    scrollToById(ID);
 
     // Update context to show the requested project
     setContext(prev => {
